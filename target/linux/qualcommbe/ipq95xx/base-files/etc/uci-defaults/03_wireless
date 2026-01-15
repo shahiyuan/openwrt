@@ -1,0 +1,13 @@
+. /lib/functions.sh
+
+case "$(board_name)" in
+askey,sbe1v1k)
+	if ! uci -q get wireless.detect_band >/dev/null; then
+		uci set wireless.detect_band=wifi-config
+		uci set wireless.detect_band.detect_band='1'
+		uci commit wireless
+	fi
+	;;
+esac
+
+exit 0
